@@ -1,4 +1,4 @@
-// you can change the speed of movement from22,23,25,25 lines :)
+// you can change the speed of movement or cursor from22,23,25,25 lines :)
 
 import { useEffect } from 'react';
 import './App.css'
