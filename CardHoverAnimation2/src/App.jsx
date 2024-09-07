@@ -1,33 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useRef, useState } from 'react';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const cardRef = useRef(null)
+  const handleMouseMove = (e) => {
+    const rect = e.target.getBoundingClientRect();
+
+    const width = rect.width;
+    const height = rect.height;
+
+    const x = e.clientX - rect.left - width / 2
+    const y = e.clientY - rect.top - height / 2
+
+    cardRef.current.style.transform = `rotateY(${x / 10}deg) rotateX(${-y / 10}deg)`
+  }
+
+  const handleMouseLeave = (e) => {
+    cardRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='relative w-60 h-80 bg-white rounded-md' 
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transformStyle: 'preserve-3d'
+      }}
+      >
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
