@@ -19,7 +19,7 @@ app.post('/upload', async (req, res) => {
             folder: "/cloudinary-demo"
         })
     
-        console.log(response)
+        console.log(response.url)
 
         res.json({
             response

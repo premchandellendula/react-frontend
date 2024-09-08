@@ -22,6 +22,7 @@ function App() {
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0]
+    console.log(file)
 
     var reader = new FileReader()
     reader.onloadend = () => {
